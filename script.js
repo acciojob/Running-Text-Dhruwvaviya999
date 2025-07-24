@@ -10,9 +10,9 @@ function renderText() {
   }
 
   const delay = 500 / speed;
-  output.textContent = "";
+  output.textContent = "W";
 
-  let i = 0;
+  let i = 1;
   const interval = setInterval(() => {
 	output.textContent += text[i];
 	i++;
