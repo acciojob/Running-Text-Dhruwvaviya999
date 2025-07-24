@@ -1,26 +1,27 @@
-const speedInput = document.getElementById("speed");
-    const p = document.getElementById("text");
+const input = document.getElementById('speed');
+function renderText() {
+  const output = document.getElementById('text');
+  const text = "We love Programming!";
+  const speed = parseInt(input.value);
 
-    speedInput.addEventListener("change", () => {
-      const speedValue = parseInt(speedInput.value);
-      const text = "We Love Programming!";
+  if (isNaN(speed) || speed < 1 || speed > 10) {
+	alert("Please enter a number between 1 and 10.");
+	return;
+  }
 
-      if (isNaN(speedValue) || speedValue < 1 || speedValue > 10) {
-        alert("Please enter a number between 1 and 10.");
-        return;
-      }
+  const delay = 500 / speed;
+  output.textContent = "";
 
-      const delay = 500 / speedValue;
-      p.textContent = "";
-      let i = 0;
+  let i = 0;
+  const interval = setInterval(() => {
+	output.textContent += text[i];
+	i++;
+	if (i === text.length) {
+	  clearInterval(interval);
+	}
+  }, delay);
 
-      const interval = setInterval(() => {
-        p.textContent += text[i];
-        i++;
-        if (i === text.length) {
-          clearInterval(interval);
-        }
-      }, delay);
+	input.value = "";
+}
 
-      speedInput.value = "";
-    });
+input.addEventListener("change", renderText);
